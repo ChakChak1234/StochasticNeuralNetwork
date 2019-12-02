@@ -14,6 +14,14 @@ class BaseNetwork(nx.DiGraph):
         :param kwargs:
         """
         super().__init__()
+        self.current_timestep = 0
+
+    def add_neuron_model(self, neuron):
+        """
+
+        :param neuron:
+        :return:
+        """
 
     def _serve_neuron_model(self, node_id) -> BaseNeuron:
         """
@@ -33,6 +41,7 @@ class BaseNetwork(nx.DiGraph):
         return self[source][target]['weight']
 
     def timestep(self,
+                 debug: bool=False,
                  *args, **kwargs) -> dict:
         """
 
@@ -55,6 +64,9 @@ class BaseNetwork(nx.DiGraph):
             if model_return['fired']:
                 ActiveNeurons.append(node_id)
 
+        if debug:
+            print(f"{self.current_timestep}|Active Neurons: {len(ActiveNeurons)}")
+
         # Calculating Neuronal Communication
         for node_id in ActiveNeurons:
             for succ in self.successors(node_id):
@@ -64,4 +76,15 @@ class BaseNetwork(nx.DiGraph):
                     weight=weight
                 )
 
+        self.current_timestep += 1
+
         return return_value
+
+
+if __name__ == "__main__":
+    from datetime import datetime
+    print(f"""
+    
+    Running Network 
+    
+    """)

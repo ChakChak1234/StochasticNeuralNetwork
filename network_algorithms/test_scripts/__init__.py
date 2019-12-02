@@ -1,0 +1,1 @@
+from .shortest_path_generation_test_script import run_shortest_path_generation_test

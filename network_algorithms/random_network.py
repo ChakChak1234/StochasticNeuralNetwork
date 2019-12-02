@@ -4,7 +4,7 @@ from structure_objects import EdgeWeight
 from random import random
 
 
-def CreateSimpleRandomNetwork(network: BaseNetwork,
+def CreateSimpleRandomNetwork(network: BaseNetwork=None,
                               number_of_neurons: int=1000,
                               proportion_excitatory: float=0.8,
                               p_e2e: float=0.3,
@@ -73,3 +73,5 @@ def CreateSimpleRandomNetwork(network: BaseNetwork,
                                 _weight=w
                             )
                         )
+
+    return network
